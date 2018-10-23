@@ -7,8 +7,6 @@ import Form from './components/Form';
 import FoodBox from './components/FoodBox';
 import FoodList from './components/FoodList';
 
-let x = 0;
-
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +51,10 @@ class App extends Component {
     this.setState({listFoods: this.state.listFoods, displayForm: false})
   }
 
+  // calculateCalories(quantity, calories) {
+  //   quantity * calories
+  // }
+
   addToFoodList(name,quantity) {
     const newListFoods = this.state.listFoods.map(elt => {
       if (elt.name === name) {
@@ -63,11 +65,10 @@ class App extends Component {
       }
       return elt;
     });
-    console.log("newListFoods: " + newListFoods);
-    console.log("newListFoods[0]: " + newListFoods[0]);
-    console.log("newListFoods[0].name: " + newListFoods[0].name);
-    this.setState({todaysList: newlistFoods.filter(elt => {return elt.quantity > 0})})
-    // this.setState({todaysList: this.state.listFoods.filter(elt => {return elt.quantity > 0})})
+    // console.log("newListFoods: " + newListFoods);
+    // console.log("newListFoods[0]: " + newListFoods[0]);
+    // console.log("newListFoods[0].name: " + newListFoods[0].name);
+    this.setState({todaysList: newListFoods.filter(elt => {return elt.quantity > 0})})
   }
 
   // searchText(elt) {
@@ -105,10 +106,6 @@ class App extends Component {
         ) : (
           ""
         )}
-
-        {/* {this.state.listFoods.filter(elt => this.searchText(elt)).map(elt => {
-          return <FoodBox foods={elt} />;
-        })} */}
 
         {this.state.listFoods.filter(elt => {return elt.name.includes(this.state.search)}).map(elt => {
           return <FoodBox
